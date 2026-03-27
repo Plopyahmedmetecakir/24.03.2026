@@ -1,0 +1,13 @@
+h1 {
+ background-color: beige;
+ height: 90px;
+}
+a {
+    display: inline-block;
+    background-color: aquamarine;
+    height: 80px;
+    width: 160px;
+    margin: 32px;
+    text-align: center;
+    padding-top: 50px;
+}
