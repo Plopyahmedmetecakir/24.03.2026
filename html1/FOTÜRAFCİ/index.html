@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photographer</title>
+    <link rel="icon" href="/html1/TRAVEL/airplane-svgrepo-com.svg">
+    </head>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        html {
+            font-size: 62.5%;
+            --header1: calc(2rem + 1vw);
+            --header2: calc(3.5rem + 1vw);
+            --header3: calc(3rem + 1vw);
+            --header4: calc(2.5rem + 1vw);
+            --text: calc(1.5rem + 1vw);
+            --big: calc(2.4rem + 1vw);
+            --special-color: #6b5855;
+            --background-color: #c99898;
+            --graytext: #4a4a4a;
+        }
+        h1 {
+            font-size: var(--header1);
+            font-family: 'Fira Sans', sans-serif;
+        }
+        li,button,label,input,p {
+            font-size: 18px;
+        }
+        h2 {
+            font-size: var(--header2);
+        }
+        h4,h5 {
+            font-size: var(--header4);
+        }
+        p {
+            font-size: var(--text);
+        }
+        h3 {
+            font-size: var(--header3);
+        }
+        ul {
+            list-style: none;
+        }
+        a {
+            text-decoration: none;
+        }
+        .main-head {
+            background-color: var(--special-color);
+            color: #fff;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0);
+        }
+        .flex {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        nav {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            background: var(--special-color);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0px 4px 6px rgb(0, 0, 0);
+        }
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+        .nav-links li {
+            margin: 0;
+        }
+        .nav-links a {
+            color: #fff;
+            font-weight: 600;
+            padding: 0.5rem 0.8rem;
+            border-radius: 0.4rem;
+        }
+        #logo {
+            flex: 0 0 auto;
+            margin-right: 1.5rem;
+            color: #fff;
+            letter-spacing: 0.1rem;
+            padding: 0.2rem 0.5rem;
+        }
+        .hero {
+            min-height: 90vh;
+            width: min(1200px, 100%);
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 2rem;
+            padding: 2rem;
+        }
+        .hero-introduction {
+            flex: 1 1 40rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            text-align: left;
+            padding: 2rem;
+        }
+        .hero-introduction h2,
+        .hero-introduction p,
+        .hero-introduction a {
+            color: #222;
+        }
+        .hero-introduction a {
+            display: inline-block;
+            margin-top: 1rem;
+            color: #6b5855;
+            border: 2px solid #6b5855;
+            padding: 0.7rem 1.2rem;
+            border-radius: 0.6rem;
+            text-decoration: none;
+        }
+        .hero-image {
+            flex: 1 1 40rem;
+            padding: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #fff;
+            border: 2px solid rgba(0, 0, 0, 0.288);
+            box-shadow: 0 10px 28px rgba(0, 0, 0, 0.863);
+            border-radius: 1rem;
+        }
+        .hero-image img {
+            width: 100%;
+            max-width: 500px;
+            height: auto;
+            border-radius: 1rem;
+            object-fit: cover;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0);
+        }
+        .hero-introduction {
+            background: #fff;
+            border: 2px solid rgba(0, 0, 0, 0.205);
+            box-shadow: 0 10px 28px rgba(0, 0, 0, 0.747);
+            border-radius: 1rem;
+        }
+        @media (max-width: 950px) {
+            .hero {
+                flex-direction: column;
+                align-items: center;
+            }
+            .hero-introduction {
+                align-items: center;
+                text-align: center;
+                padding: 1.5rem;
+            }
+            .hero-image {
+                max-width: 80%;
+                margin-top: 1.5rem;
+            }
+        }
+    </style>
+<body>
+    <header class="main-head">
+        <nav>
+            <h1 id="logo">Elena Joy</h1>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#work">Work</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section class="hero">
+            <div class="hero-introduction">
+            <h2>Elena Joy <br> 
+            Photographer</h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Velit nobis iure at nisi et optio veniam totam praesentium
+                rem aspernatur!
+            </p>
+            <a href="#gallery">View Gallery</a>
+            </div>
+            <div class="hero-image">
+                <img src="/html1/FOTÜRAFCİ/fotografci.png" alt="Hero Image">
+            </div>
+        </section>
+    </main>
+</body>
+</html>

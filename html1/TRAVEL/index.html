@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel</title>
+    <link rel="icon" href="/html1/TRAVEL/airplane-svgrepo-com.svg">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        html {
+            font-size: 62.5%;
+        }
+        h1 {
+            font-size: 26px;
+        }
+        li,button,label,input,p {
+            font-size: 18px;
+        }
+        h2 {
+            font-size:  48px;
+        }
+        h4,h5 {
+            font-size: 24px;
+        }
+        .main-head {
+            background-color: #2f2d41;
+            color: #fff;
+
+        }
+        nav {
+            color: #fff;
+            display: flex;
+            display: flex;
+            width: 90%;
+            margin: auto;
+            padding: 20px;
+            align-items: center;
+        }
+        nav ul {
+            color: #fff;
+            display: flex;
+            flex:1 1 500px;
+            justify-content: space-around;
+            align-items: center;
+            list-style-type: none;
+        }
+        #logo {
+            flex:1 1 400px;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .hero {
+            min-height: 90vh;
+            background: linear-gradient(black,transparent), url("/html1/TRAVEL/pexels-cihat-dede-677909449-33404488.jpg") no-repeat center center/cover;
+           background-repeat: no-repeat;
+           background-size: cover;
+           background-position: center;
+           color:#fff;
+           display:flex;
+           flex-direction: column;
+           align-items: center;
+           justify-content: center;
+           text-align: center;
+        }
+        button {
+            padding: 20px 60px;
+            background-color: #8079bb;
+            border: none;
+            color:#fff;
+            font-size: 20px;
+            cursor: pointer;
+        }
+        button:hover {
+            background:#2f2d41
+        }
+        .hero h3 {
+            padding: 30px;
+        }
+        @media screen and (max-width: 932px) {
+            html {
+                font-size: 45%;
+            }
+            nav {
+                text-align: center;
+            }
+            #logo {
+                padding: 20px;
+            }
+        }
+        #locations {
+            min-height: 100vh;
+            background: linear-gradient(black,transparent), url(/html1/TRAVEL/pexels-olof-nyman-366625-2170642.jpg);
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+            display:flex;
+            align-items: center;
+            color: aliceblue;
+            position:relative;
+        }
+        .locations-head {
+            width: 90%;
+            margin: auto;
+        }
+        .location-head h2 {
+            padding: 10px 0px;
+            text-decoration: underline;
+            text-decoration-thickness: 5px;
+        }
+        .location-head h3 {
+            padding: 40px 0px;
+            background: linear-gradient(rgb(58, 44, 44),rgb(116, 84, 44));
+            text-decoration-thickness: 5px;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .moving-cloud-1 {
+            animation: cloudanimation 3s ease-in-out infinite alternate;
+        }
+        .cloud {
+            position:absolute;
+            top: 0%;
+            right: 0%;
+            z-index:5;
+            height: 500px;
+            width: 700px;;
+            opacity:0.9;
+        }
+        @keyframes cloudanimation {
+            from {
+                transform: translate(10%,-10%);
+            }
+            to {
+                transform: translate(0%, 0%);
+            }
+        }
+        .benefits-head {
+            background: rgb(77, 71, 65);
+            padding:3 rem;
+            min-height: 30vh;
+            display: flex;
+            flex-direction: column; 
+            align-items: center;
+            justify-content: center;
+            color:aliceblue;
+            text-align: center;
+        }
+        .cards {
+            width: 90%;
+            margin:auto;
+            display: flex;
+            min-height: 70vh;;
+            align-items: center;
+            justify-content: center;
+        }
+        .benefits-head h3 {
+            padding:10px;
+        }
+        .card {
+            flex:10 10 250px;
+            height: 350px;
+            margin: 20px 30px;
+            padding:20px 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            color:black;
+            border: 2px solid #ccc;
+            border-radius: 10px;
+        }
+        .image-container {
+            background: rgb(110, 97, 158);
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+        .cards img {
+            height: 120px;
+        }
+        #contact {
+            min-height: 100vh;
+            background: linear-gradient(black,transparent), url(/html1/TRAVEL/pexels-pealdesign-28140978.jpg);
+            background-size: cover;
+            background-repeat: none;
+            display:flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .form-head {
+            padding: 40px;
+            text-align: center;
+        }
+        .name-form, .email-form, .message-form {
+            padding: 30px;
+            text-align: center;
+        }
+        .form-wrapper {
+            background: rgba(228, 207, 255, 0.8);
+            padding: 40px;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 500px;
+        }
+        .form-wrapper label {
+            margin: 0px 30px;
+
+        }
+        .form-wrapper button {
+            width: 100%;
+            padding: 20px;
+            margin-top: 80px;
+        }
+    </style>
+</head>
+<body>
+<header class="main-head">
+<nav>
+    <h1 id="logo">Travelly</h1>
+    <ul>
+        <li><a href="#locations">Locations</a></li>
+        <li><a href="#benefits">Benefits</a></li>
+        <li><a href="#contact">Contact</a></li>
+    </ul>
+</nav>
+</header>
+    <section class="hero">
+        <h2>Travel Beyond Limits</h2>
+        <h3>Start your travel at an affordable price with Travelly <br> Contact us now bellow.</h3>
+        <button>Book Now</button>
+    </section>
+    <section id="locations">
+        <header class="locations-head">
+            <h2>The Perfect Travelling Experience</h2>
+            <h3>Discover the joy of traveling with our exclusive offers and services.</h3>
+            <img src="/html1/TRAVEL/pngimg.com - cloud_PNG112243.png" class="moving-cloud-1 cloud">
+        </header>
+    </section>
+    <section class="benefits">
+        <header class="benefits-head">
+        <h2>Benefits of Traveling</h2>
+        <h3>We cover a wide range of benefits for our travelers.</h3>
+   </header>
+   <div class="cards">
+    <div class="card">
+        <div class="image-container">
+            <img src="/html1/TRAVEL/plane.png">
+        </div>
+        <h4>Travel</h4>
+        <p>Traveling broadens horizons and creates unforgettable memories.</p>
+    </div>
+    <div class="card">
+        <div class="image-container">
+            <img src="/html1/TRAVEL/man.png">
+        </div>
+        <h4>Personal Growth</h4>
+        <p>Traveling builds confidence and adaptability.</p>
+    </div>
+    <div class="card">
+        <div class="image-container">
+            <img src="/html1/TRAVEL/world.png">
+        </div>
+        <h4>Cultural Understanding</h4>
+        <p>Traveling fosters empathy and global awareness.</p>
+    </div>
+   </div>
+   <section id="contact">
+    <div class="form-wrapper">
+        <header class="form-head">
+            <h2>Contact Us</h2>
+            <form action="https://formspree.io/f/xjgpyolz"
+  method="POST">
+                <div class="name-form">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+                </div>
+                <div class="email-form">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="_replyto" required>
+                </div>
+                <div class="message-form">
+                <label for="message">Message:</label>
+                <textarea id="message" name="message" required></textarea>
+                </div>
+                <button type="submit" value="Send">Submit</button>
+            </form>
+        </header>
+    </div>
+   </section>
+    <footer>
+        <p>&copy; 2024 All Rights Reserved.</p>
+    </footer>
+</body>
+</html>

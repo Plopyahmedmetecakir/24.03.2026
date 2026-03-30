@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    </head>
+    <body>
+        <div class="container">
+            
+            <div class="box1"></div>
+            <div class="box2"></div>
+            <div class="box3"></div>
+        </div>
+    </body>
+    <style>
+        html {
+            font-size: 62.5%;
+        }
+        html,body {
+        height: 100%;
+        }
+        .container {
+            background-color:rgb(170, 196, 170);
+            width: 80%;
+            height: 80%;
+            margin:auto;
+        }
+        .box1,.box2,.box3 {
+            width: 20%;
+            height: 20%;
+            background-color: cornflowerblue;
+        }
+        .box2 {
+            background: rgb(228, 125, 134);
+            transform:translate(310%,100%)
+        }
+        .box3 {
+            background: rgb(209, 166, 85);
+            transform:translate(80%,-1%)
+        }
+        .box1 {
+            position:absolute;
+            top: 500px;
+            left: 300px;
+            transform:translate(0%,-10%);
+            position:fixed;
+        }
+    </style>
+</html>
