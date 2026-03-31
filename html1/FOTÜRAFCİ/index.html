@@ -9,6 +9,7 @@
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow-x: hidden;
         }
         * {
             margin: 0;
@@ -17,6 +18,7 @@
         }
         html {
             font-size: 62.5%;
+            scroll-behavior: smooth;
             --header1: calc(2rem + 1vw);
             --header2: calc(3.5rem + 1vw);
             --header3: calc(3rem + 1vw);
@@ -56,6 +58,10 @@
             background-color: var(--special-color);
             color: #fff;
             box-shadow: 0px 4px 6px rgba(0, 0, 0);
+            position: sticky;
+            top: 0;
+            width: 100%;
+            z-index: 100;
         }
         .flex {
             display: flex;
@@ -64,6 +70,7 @@
             align-items: center;
         }
         body {
+            animation:opening 1s ease-out;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
         
@@ -77,19 +84,56 @@
             align-items: center;
             justify-content: space-between;
             box-shadow: 0px 4px 6px rgb(0, 0, 0);
+            position: relative;
+            z-index: 20;
+        }
+        .menu-toggle {
+            display: none;
+        }
+        .burger {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            cursor: pointer;
+            z-index: 30;
+        }
+        .burger span {
+            width: 2.8rem;
+            height: 0.3rem;
+            background: #fff;
+            border-radius: 2rem;
+            transition: all 0.3s ease;
         }
         .nav-links {
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 24rem;
+            height: 100vh;
+            padding: 8rem 1.5rem 1.5rem;
             display: flex;
-            gap: 1.5rem;
+            flex-direction: column;
+            gap: 0.8rem;
+            background: #7b6662;
+            box-shadow: -10px 0 28px rgba(0, 0, 0, 0.28);
+            transform: translateX(110%);
+            transition: transform 0.35s ease;
+            z-index: 25;
         }
         .nav-links li {
             margin: 0;
         }
         .nav-links a {
+            display: block;
+            width: 100%;
             color: #fff;
             font-weight: 600;
             padding: 0.5rem 0.8rem;
             border-radius: 0.4rem;
+            transition: background 0.3s ease;
+        }
+        .nav-links a:hover {
+            background: rgba(255, 255, 255, 0.14);
         }
         #logo {
             flex: 0 0 auto;
@@ -99,15 +143,16 @@
             padding: 0.2rem 0.5rem;
         }
         .hero {
-            min-height: 90vh;
+            min-height: 76vh;
             width: min(1200px, 100%);
             margin: 0 auto;
             display: flex;
             flex-wrap: wrap;
             align-items: center;
             justify-content: space-between;
-            gap: 2rem;
-            padding: 2rem;
+            gap: 1.4rem;
+            padding: 1rem 2rem 0.2rem;
+            scroll-margin-top: 9rem;
         }
         .hero-introduction {
             flex: 1 1 40rem;
@@ -116,7 +161,7 @@
             justify-content: center;
             align-items: flex-start;
             text-align: left;
-            padding: 2rem;
+            padding: 1.4rem;
         }
         .hero-introduction h2,
         .hero-introduction p,
@@ -134,28 +179,217 @@
         }
         .hero-image {
             flex: 1 1 40rem;
-            padding: 2rem;
+            min-height: 46rem;
+            padding: 1rem 1.5rem 0;
+            position: relative;
             display: flex;
-            align-items: center;
+            align-items: flex-end;
             justify-content: center;
-            background: #fff;
+            overflow: hidden;
+            background: linear-gradient(180deg, #ffffff 0%, #f4efef 100%);
             border: 2px solid rgba(0, 0, 0, 0.288);
             box-shadow: 0 10px 28px rgba(0, 0, 0, 0.863);
             border-radius: 1rem;
         }
-        .hero-image img {
+        .hero-image .woman-photo {
             width: 100%;
-            max-width: 500px;
+            max-width: 38rem;
             height: auto;
-            border-radius: 1rem;
-            object-fit: cover;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0);
+            display: block;
+            object-fit: contain;
+            object-position: bottom;
+            position: relative;
+            z-index: 2;
+            animation: woman-idle 4s ease-in-out infinite;
+        }
+        .hero-image .plant {
+            position: absolute;
+            bottom: 0;
+            width: 18rem;
+            max-width: 32%;
+            height: auto;
+            pointer-events: none;
+        }
+        .hero-image .plant-left {
+            left: 0;
+            z-index: 1;
+            animation: plant-sway-left 4.5s ease-in-out infinite;
+        }
+        .hero-image .plant-right {
+            right: -1rem;
+            z-index: 3;
+            animation: plant-sway-right 4.5s ease-in-out infinite;
         }
         .hero-introduction {
             background: #fff;
             border: 2px solid rgba(0, 0, 0, 0.205);
             box-shadow: 0 10px 28px rgba(0, 0, 0, 0.747);
             border-radius: 1rem;
+        }
+        .section-divider {
+            width: min(1200px, 92%);
+            height: 2px;
+            margin: -0.4rem auto 0.8rem;
+            background: linear-gradient(90deg, transparent, #6b5855, transparent);
+            opacity: 0.7;
+        }
+        .about {
+            width: min(1200px, 100%);
+            min-height: 75vh;
+            margin: 0 auto 2rem;
+            display: flex;
+            flex-wrap: wrap;
+            overflow: hidden;
+            background: #ffffff;
+            border-radius: 1.2rem;
+            box-shadow: 0 10px 28px rgba(0, 0, 0, 0.2);
+            scroll-margin-top: 8rem;
+        }
+        .about-image {
+            flex: 1 1 45rem;
+            min-height: 52rem;
+        }
+        .about-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        .about-text {
+            flex: 1 1 45rem;
+            padding: 4rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 1.5rem;
+            background: #f8f3f2;
+        }
+        .about-text h2 {
+            color: #6b5855;
+        }
+        .about-text h5 {
+            color: #222;
+            letter-spacing: 0.1rem;
+        }
+        .about-text p {
+            color: #4a4a4a;
+            line-height: 1.7;
+        }
+        .gallery {
+            position: relative;
+            width: min(1200px, 100%);
+            margin: 0 auto 3rem;
+            min-height: 78rem;
+            padding: 0;
+            overflow: hidden;
+            border-radius: 1.2rem;
+            scroll-margin-top: 8rem;
+        }
+        .gallery-title-box {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 6;
+            width: min(50rem, calc(100% - 3rem));
+            display: grid;
+            place-items: center;
+            padding: 2rem 2.6rem;
+            text-align: center;
+            background: rgba(107, 88, 85, 0.82);
+            color: #fff;
+            border-radius: 1.2rem;
+            box-shadow: 0 10px 24px rgba(0, 0, 0, 0.24);
+        }
+        .gallery-title-box h2 {
+            color: #fff;
+            font-size: clamp(3.2rem, 5vw, 5.2rem);
+            margin-bottom: 1rem;
+        }
+        .gallery-title-box p {
+            color: rgba(255, 255, 255, 0.95);
+            font-size: 1.8rem;
+            line-height: 1.6;
+        }
+        .gallery-grid {
+            position: relative;
+            z-index: 1;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-template-rows: repeat(2, 39rem);
+            gap: 0;
+        }
+        .gallery-grid img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        .contact {
+            width: min(1200px, 100%);
+            margin: 0 auto 3rem;
+            padding: 4rem 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(28rem, 1fr));
+            gap: 2rem;
+            background: #f8f3f2;
+            border-radius: 1.2rem;
+            box-shadow: 0 10px 28px rgba(0, 0, 0, 0.14);
+            scroll-margin-top: 8rem;
+        }
+        .contact-text {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 1.2rem;
+        }
+        .contact-text h2 {
+            color: #6b5855;
+        }
+        .contact-text p {
+            color: #4a4a4a;
+            line-height: 1.7;
+        }
+        .contact-card {
+            background: #fff;
+            padding: 2.4rem;
+            border-radius: 1rem;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+        .contact-card p {
+            margin-bottom: 1rem;
+            color: #4a4a4a;
+        }
+        .contact-card strong {
+            color: #6b5855;
+        }
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+            margin-top: 1.8rem;
+        }
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 1.1rem 1.2rem;
+            border: 1px solid #d7c7c4;
+            border-radius: 0.8rem;
+            font: inherit;
+            background: #fffaf9;
+        }
+        .contact-form textarea {
+            min-height: 12rem;
+            resize: vertical;
+        }
+        .contact-form button {
+            border: none;
+            padding: 1rem 1.4rem;
+            border-radius: 0.8rem;
+            background: #6b5855;
+            color: #fff;
+            font-weight: 600;
+            cursor: pointer;
         }
         @media (max-width: 950px) {
             .hero {
@@ -169,22 +403,96 @@
             }
             .hero-image {
                 max-width: 80%;
-                margin-top: 1.5rem;
+                margin-top: 0.8rem;
+            }
+            .about {
+                flex-direction: column;
+            }
+            .about-image {
+                min-height: 30rem;
+            }
+            .about-text {
+                padding: 2.4rem;
+            }
+            .gallery {
+                min-height: auto;
+            }
+            .gallery-grid {
+                grid-template-columns: 1fr;
+                grid-template-rows: repeat(4, 24rem);
+            }
+            .gallery-title-box {
+                top: 50%;
+                width: min(34rem, calc(100% - 2rem));
             }
         }
+        .menu-toggle:checked + .burger span:nth-child(1) {
+            transform: translateY(0.8rem) rotate(45deg);
+        }
+        .menu-toggle:checked + .burger span:nth-child(2) {
+            opacity: 0;
+        }
+        .menu-toggle:checked + .burger span:nth-child(3) {
+            transform: translateY(-0.8rem) rotate(-45deg);
+        }
+        .menu-toggle:checked ~ .nav-links {
+            transform: translateX(0);
+        }
+        @keyframes opening {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        @keyframes woman-idle {
+            0%, 100% {
+                transform: translateX(0);
+            }
+            50% {
+                transform: translateX(8px);
+            }
+        }
+        @keyframes plant-sway-left {
+            0%, 100% {
+                transform: translateX(0) rotate(0deg);
+            }
+            50% {
+                transform: translateX(6px) rotate(1deg);
+            }
+        }
+        @keyframes plant-sway-right {
+            0%, 100% {
+                transform: translateX(0) rotate(0deg);
+            }
+            50% {
+                transform: translateX(-6px) rotate(-1deg);
+            }
+        }
+        
     </style>
 <body>
     <header class="main-head">
         <nav>
             <h1 id="logo">Elena Joy</h1>
+            <input type="checkbox" id="menu-toggle" class="menu-toggle">
+            <label for="menu-toggle" class="burger" aria-label="Menüyü aç">
+                <span></span>
+                <span></span>
+                <span></span>
+            </label>
+            <!--IN LINE JS YAZDIM BUNUN İÇİN ÖRNEKTE AYRI DOSYA AÇMIŞ AMA GEREK YOK DOSYA AÇMAYA-->
             <ul class="nav-links">
-                <li><a href="#about">About</a></li>
-                <li><a href="#work">Work</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a href="#about" onclick="document.getElementById('menu-toggle').checked = false;">About</a></li>
+                <li><a href="#work" onclick="document.getElementById('menu-toggle').checked = false;">Work</a></li>
+                <li><a href="#contact" onclick="document.getElementById('menu-toggle').checked = false;">Contact</a></li>
             </ul>
         </nav>
     </header>
-    <main>
+    <main style="padding-top: 1rem;">
         <section class="hero">
             <div class="hero-introduction">
             <h2>Elena Joy <br> 
@@ -193,10 +501,68 @@
                 Velit nobis iure at nisi et optio veniam totam praesentium
                 rem aspernatur!
             </p>
-            <a href="#gallery">View Gallery</a>
+            <a href="#work">View Gallery</a>
             </div>
             <div class="hero-image">
-                <img src="/html1/FOTÜRAFCİ/fotografci.png" alt="Hero Image">
+                <img class="plant plant-left" src="/html1/FOTÜRAFCİ/plantleft.png" alt="">
+                <img class="plant plant-right" src="/html1/FOTÜRAFCİ/plantright.png" alt="">
+                <img class="woman-photo" src="/html1/FOTÜRAFCİ/fotografci.png" alt="Elena Joy Hero Image">
+            </div>
+        </section>
+        <div class="section-divider"></div>
+        <section class="about" id="about">
+            <div class="about-image">
+                <img src="/html1/FOTÜRAFCİ/pexels-brett-sayles-1152187.jpg" alt="Photographer working outdoors">
+            </div>
+            <div class="about-text">
+                <h2>About Elena</h2>
+                <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                     Alias iusto amet quo vitae at. 
+                     Inventore officia voluptatum at dolorem labore.
+                </p>
+                <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                     Alias iusto amet quo vitae at. 
+                     Inventore officia voluptatum at dolorem labore.
+                </p>
+            </div>
+        </section>
+        <div class="section-divider"></div>
+        <section class="gallery" id="work">
+            <div class="gallery-title-box">
+                <div>
+                    <h2>My Work</h2>
+                    <p>Portraits, lifestyle and calm natural frames.</p>
+                </div>
+            </div>
+            <div class="gallery-grid">
+                <img src="/html1/FOTÜRAFCİ/pexels-betul-gunes-1793145775-32351150.jpg" alt="Gallery photo 1">
+                <img src="/html1/FOTÜRAFCİ/pexels-brandon-retratos-768594541-36488734.jpg" alt="Gallery photo 2">
+                <img src="/html1/FOTÜRAFCİ/pexels-ogutomacedo-18794664.jpg" alt="Gallery photo 3">
+                <img src="/html1/FOTÜRAFCİ/pexels-ozclkoyku-33579409.jpg" alt="Gallery photo 4">
+            </div>
+        </section>
+        <div class="section-divider"></div>
+        <section class="contact" id="contact">
+            <div class="contact-text">
+                <h2>Contact Elena</h2>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                     Veritatis numquam voluptates dicta labore. Laudantium, incidunt neque placeat recusandae facilis possimus blanditiis cupiditate
+                     nesciunt voluptate! Illo rem omnis repellendus vel distinctio.
+                </p>
+            </div>
+            <div class="contact-card">
+                <p><strong>Email:</strong> hello@elenajoystudio.com</p>
+                <p><strong>Phone:</strong> +90 555 123 45 67</p>
+                <p><strong>Location:</strong> Uk, England</p>
+                <form class="contact-form">
+                    <input type="text" placeholder="Name">
+                    <input type="email" placeholder="E-mail">
+                    <textarea placeholder="Message"></textarea>
+                    <button type="submit">Send Your Message</button>
+                </form>
             </div>
         </section>
     </main>

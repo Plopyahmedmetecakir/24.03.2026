@@ -1,0 +1,79 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow-x: hidden;
+        }
+        html {
+            font-size: 62.5%;
+            scroll-behavior: smooth;
+        }
+        h1 {
+            font-size: $header1;
+            font-family: 'Fira Sans', sans-serif;
+        }
+        li,button,label,input,p {
+            font-size: 18px;
+        }
+        h2 {
+            font-size: $header2;
+        }
+        h4,h5 {
+            font-size: $header4;
+        }
+        p {
+            font-size:  $text;
+        }
+        h3 {
+            font-size: $header3;
+        }
+        ul {
+            list-style: none;
+        }
+        a {
+            text-decoration: none;
+        }
+        .main-head {
+            color: #fff;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0);
+            position: sticky;
+            top: 0;
+            width: 100%;
+            z-index: 100;
+        }
+        .flex {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        body {
+            animation:opening 1s ease-out;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        @import "global";
+
+@mixin flex($justify: row, $align, $direction) {
+    display: flex;
+    justify-content: $justify;
+    align-items: $align;
+    flex-direction: $direction;
+}
+
+
+$header1: 2.5rem;
+$header2: 2rem;
+$header3: 1.8rem; 
+$header4: 1.5rem;
+$text: 1.2rem;
+$gradient: linear-gradient(45deg, #ff6b6b, #f06595);
+$background: #cce5ff;
+$gray-text: #6c757d;
+
+
+
+
+        
