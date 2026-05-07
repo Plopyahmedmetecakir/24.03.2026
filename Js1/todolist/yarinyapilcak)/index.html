@@ -5,59 +5,206 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Todo List</title>
     <style>
+        * {
+            box-sizing: border-box;
+        }
         body {
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 1rem;
+            padding: 1rem;
             font-family: Arial, sans-serif;
-            max-width: 600px;
-            margin: 0 auto;
-            padding: 20px;
+            background-image: linear-gradient(to right, #536577, #b3d3f3);
+            color: white;
         }
         h1 {
-            text-align: center;
+            color: white;
+            font-size: 1.5rem;
+            margin: 0;
+            width: 100%;
+            text-align: left;
         }
-        .todo-input {
-            width: 70%;
-            padding: 10px;
-            font-size: 16px;
+        .intro {
+            color: white;
+            font-size: 1rem;
+            margin: 0;
+            text-align: left;
+            max-width: 600px;
+            width: 100%;
         }
         .add-btn {
-            width: 25%;
-            padding: 10px;
+            padding: 10px 16px;
             background-color: #4CAF50;
             color: white;
             border: none;
             cursor: pointer;
+            border-radius: 4px;
         }
-        .todo-list {
-            list-style-type: none;
-            padding: 0;
-        }
-        .todo-item {
-            background-color: #f9f9f9;
-            margin: 5px 0;
+        .todo-input {
+            width: 100%;
+            max-width: 360px;
             padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .status-filter,
+        .status-select {
+            padding: 10px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            background: white;
+            color: #333;
+            font-size: 0.95rem;
+        }
+        .filter-row {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            width: 100%;
+            max-width: 600px;
+        }
+        .filter-row label {
+            color: white;
+            font-size: 0.95rem;
+        }
+        .todo-list li {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            gap: 0.75rem;
+            padding: 0.25rem 0;
+            margin-bottom: 0.25rem;
+            background: none;
+            border: none;
+            border-radius: 0;
+            color: white;
+            opacity: 0;
+            transform: translateX(-10px);
+            transition: opacity 0.25s ease, transform 0.25s ease, max-height 0.25s ease, margin-bottom 0.25s ease, padding 0.25s ease;
+            max-height: 60px;
+            overflow: hidden;
+        }
+        .todo-list li.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        .todo-list li.removing {
+            opacity: 0;
+            transform: translateX(10px);
+            max-height: 0;
+            margin-bottom: 0;
+            padding-top: 0;
+            padding-bottom: 0;
+        }
+        .status-btn {
+            border: none;
+            color: white;
+            padding: 0.35rem 0.7rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.95rem;
+        }
+        .blue-btn {
+            background: #3498db;
+        }
+        .blue-btn:hover {
+            background: #2980b9;
+        }
+        .status-icon {
+            background: #3498db;
+        }
+        .green-btn {
+            background: #2ecc71;
+        }
+        .green-btn:hover {
+            background: #27ae60;
         }
         .delete-btn {
-            background-color: #f44336;
+            background: #e74c3c;
+            border: 1px solid #c0392b;
             color: white;
-            border: none;
-            padding: 5px 10px;
+            padding: 0.15rem 0.5rem;
+            border-radius: 4px;
             cursor: pointer;
+        }
+        .delete-btn:hover {
+            background: #c0392b;
+        }
+        .status-progress .todo-text {
+            color: #7bc9f2;
+        }
+        .status-done .todo-text {
+            color: #7ed957;
+            text-decoration: line-through;
+        }
+        .todo-list {
+            width: 100%;
+            max-width: 600px;
+            padding-left: 1.5rem;
+            margin: 0;
+            list-style-type: decimal;
+        }
+        .todo-list li {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.25rem 0;
+            margin-bottom: 0.25rem;
+            background: none;
+            border: none;
+            border-radius: 0;
+            color: white;
+            opacity: 0;
+            transform: translateX(-10px);
+            transition: opacity 0.25s ease, transform 0.25s ease, max-height 0.25s ease, margin-bottom 0.25s ease, padding 0.25s ease;
+            max-height: 60px;
+            overflow: hidden;
+        }
+        .todo-list li.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        .todo-list li.removing {
+            opacity: 0;
+            transform: translateX(10px);
+            max-height: 0;
+            margin-bottom: 0;
+            padding-top: 0;
+            padding-bottom: 0;
+        }
+        .delete-btn {
+            background: #e74c3c;
+            border: 1px solid #c0392b;
+            color: white;
+            padding: 0.15rem 0.5rem;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .delete-btn:hover {
+            background: #c0392b;
         }
     </style>
 </head>
 <body>
     <h1>Todo List</h1>
-    <div>
-        <input class="todo-input">
-        <button class="add-btn">Ekle</button>
+    <p class="intro">Yapcanseyleri ekle gı:</p>
+    <div class="filter-row">
+        <label for="status-filter">Filtireler hocam:</label>
+        <select id="status-filter" class="status-filter">
+            <option value="all">Hepsi</option>
+            <option value="todo">Yapcaklarin</option>
+            <option value="progress">Suanyapıyom</option>
+            <option value="done">Okeyto</option>
+        </select>
     </div>
-    <ul class="todo-list">
-    </ul>
+    <input id="todo-input" class="todo-input">
+    <button id="add-button" class="add-btn">Ekle</button>
+    <ol id="todo-list" class="todo-list"></ol>
 
-    <script src="js.js">    </script>
+    <script src="js.js"></script>
        
 </body>
 </html>
