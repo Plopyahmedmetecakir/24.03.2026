@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+<button onclick="mapExample()">MAP Örneği</button>
+<button onclick="findExample()">FIND Örneği</button>
+<button onclick="filterExample()">FILTER Örneği</button>
+<button onclick="everyExample()">EVERY Örneği</button>
+<button onclick="someExample()">SOME Örneği</button>
+<button onclick="forEachExample()">forEach Örneği</button>
+<button onclick="reduceExample()">REDUCE Örneği</button>
+<button onclick="sortExample()">SORT Örneği</button>
+
+<script>
+    let videos = [
+        "test","test2","test3","test4","asdasdsa"
+    ]
+    let games = [
+        { title: "Deltarune", rating: 9.5 },
+        { title: "Ultrakill", rating: 8.5 },
+        { title: "Hollow Knight", rating: 9.0 },
+        { title: "Celeste", rating: 8.8 },
+        { title: "Overwatch", rating: 7.5 },
+        { title: "Trash Game", rating: 2.0 }
+    ]
+    
+    // MAP 
+    function mapExample() {
+        let newVideos = videos.map(video => {
+            return video.toUpperCase();
+        })
+        console.log("MAP Sonucu: " + JSON.stringify(newVideos));
+    }
+    
+    // FIND
+    function findExample() {
+        let searchvideo = videos.find(function(video){
+            return video.includes("2");
+        })
+        console.log("FIND Sonucu: " + searchvideo);
+    }
+    
+    // FILTER
+    function filterExample() {
+        let shortSearchvideo = videos.filter(function(video){
+            return video.length > 6;
+        })
+        console.log("FILTER Sonucu: " + JSON.stringify(shortSearchvideo));
+    }
+    
+    // EVERY 
+    function everyExample() {
+        let checkrating = games.every(function(game){
+            return game.rating > 5.0; 
+        })
+        console.log("EVERY Sonucu (tüm oyunlar 5.0+ rating'e sahip mi?): " + checkrating);
+    }
+    
+    // SOME 
+    function someExample() {
+        let hasPerfectGame = games.some(function(game){
+            return game.rating > 9.0;
+        })
+        console.log("SOME Sonucu (9.0+ rating oyun var mı?): " + hasPerfectGame);
+    }
+    
+    // REDUCE 
+    function reduceExample() {
+        let numbers = [1, 2, 3, 4, 5];
+        let sum = numbers.reduce(function(toplam, sayi){
+            return toplam + sayi;
+        }, 0)
+        console.log("REDUCE Sonucu (1+2+3+4+5): " + sum);
+    }
+    
+    // SORT 
+    function sortExample() {
+        let sortedGames = games.sort(function(a, b){
+            return b.rating - a.rating;
+        })
+        let result = sortedGames.map(g => g.title + " (" + g.rating + ")").join("\n");
+        console.log("SORT Sonucu (rating'e göre sıralı):\n" + result);
+    }
+</script>    
+</body>
+</html>
