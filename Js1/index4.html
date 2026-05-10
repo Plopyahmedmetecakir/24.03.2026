@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //SORT
+        let items = [1, 2, 3, 4, 5];
+        let ratings = [9.5, 8.5, 9.0, 8.8, 7.5, 2.0];
+        items.sort();
+        ratings.sort();
+        let descRating = [...ratings];
+        descRating.sort(function(a, b){
+            return a - b;
+        })
+        console.log(descRating);
+        let name = "blupblup";
+        let letters = name.split("");
+        letters.sort();
+        console.log(letters);
+  
+    </script>
+</body>
+</html>

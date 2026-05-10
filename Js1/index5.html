@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //global scope
+        function sayHi() {
+            console.log("Hello World");
+            changeName();
+            console.log("sayHi bitty");
+        }
+        sayHi();
+        function changeName() {
+            name = "Mete";
+            console.log(name);
+            console.log("changeName bitty");
+        }
+        let name = "Ahmet";
+        
+    </script>
+</body>
+</html>
